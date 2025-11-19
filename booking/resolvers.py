@@ -2,7 +2,7 @@ import json
 import requests
 
 SCHEDULE_SERVICE_URL = "http://localhost:3202/schedules"
-MOVIES_SERVICE_URL = "http://localhost:3000/graphql"
+MOVIES_SERVICE_URL = "http://localhost:3200/graphql"
 USERS_SERVICE_URL = "http://localhost:3203/users"
 
 BOOKING_FILE = "{}/data/bookings.json"
@@ -141,4 +141,3 @@ def delete_booking(_, info, _userid, _date, _movieid):
     return {"booking": None, "error": "Booking not found"}
 
 # TODO : modifier les retours au delete ? on renvoie le booking entier (mineur)
-# TODO : ajouter un resolver vers Movies comme avec Movies et actor pour + d'infos que les movieId
