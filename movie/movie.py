@@ -42,7 +42,7 @@ def graphql_server():
     success, result = graphql_sync(
                         schema,
                         data,
-                        context_value=None,
+                        context_value={"request": request},
                         debug=app.debug
                     )
     status_code = 200 if success else 400
