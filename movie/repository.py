@@ -30,8 +30,14 @@ class MongoMovieRepository:
         self.db = self.client.get_database()
         self.collection = self.db["movies"]
 
+        # Data initialization from JSON if empty collection
+        if self.collection.count_documents({}) == 0:
+            json_repo = JsonMovieRepository()
+            self.collection.insert_many(json_repo.load())
+
+
     def load(self):
-        return list(self.collection.find({}))
+        return list(self.collection.find({}, {"_id": 0}))
 
     def save(self, movies):
         self.collection.delete_many({})
@@ -53,8 +59,14 @@ class MongoActorRepository:
         self.db = self.client.get_database()
         self.collection = self.db["actors"]
 
+        # Data initialization from JSON if empty collection
+        if self.collection.count_documents({}) == 0:
+            json_repo = JsonActorRepository()
+            self.collection.insert_many(json_repo.load())
+
+
     def load(self):
-        return list(self.collection.find({}))
+        return list(self.collection.find({}, {"_id": 0}))
 
     def save(self, actors):
         self.collection.delete_many({})

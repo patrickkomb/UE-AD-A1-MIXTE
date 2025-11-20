@@ -24,8 +24,14 @@ class MongoUserRepository:
         self.db = self.client.get_database()
         self.collection = self.db["users"]
 
+        # Data initialization from JSON if empty collection
+        if self.collection.count_documents({}) == 0:
+            json_repo = JsonUserRepository()
+            self.collection.insert_many(json_repo.load())
+
+
     def load(self):
-        return list(self.collection.find({}))
+        return list(self.collection.find({}, {"_id": 0}))
 
     def save(self, users):
         self.collection.delete_many({})
