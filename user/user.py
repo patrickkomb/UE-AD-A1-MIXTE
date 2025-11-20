@@ -1,18 +1,14 @@
 from flask import Flask, request, jsonify, make_response
-import json
+from repository import get_repository
 
 app = Flask(__name__)
 
 PORT = 3203
 HOST = '0.0.0.0'
 
-with open('{}/data/users.json'.format("."), "r") as jsf:
-   users = json.load(jsf)["users"]
+repo = get_repository()
 
-def write(users):
-    with open('{}/data/users.json'.format("."), 'w') as f:
-        full = {'users': users}
-        json.dump(full, f)
+users = repo.load()
 
 @app.route("/", methods=['GET'])
 def home():
@@ -37,7 +33,7 @@ def add_user():
             return make_response(jsonify({"error":"User ID already exists"}),409)
 
     users.append(req)
-    write(users)
+    repo.save(users)
     res = make_response(jsonify({"message":"user added"}),200)
     return res
 
@@ -49,7 +45,7 @@ def update_user(userid):
         if str(user["id"]) == str(userid):
             user.update(req)
             res = make_response(jsonify(user),200)
-            write(users)
+            repo.save(users)
             return res
 
     res = make_response(jsonify({"error":"user ID not found"}),404)
@@ -60,7 +56,7 @@ def del_user(userid):
     for user in users:
         if str(user["id"]) == str(userid):
             users.remove(user)
-            write(users)
+            repo.save(users)
             return make_response(jsonify(user),200)
 
     res = make_response(jsonify({"error":"user ID not found"}),404)
