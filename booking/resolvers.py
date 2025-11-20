@@ -1,22 +1,10 @@
-import json
 import requests
-import os
+from repository import get_repository
+from env import USERS_SERVICE_URL, MOVIES_SERVICE_URL, SCHEDULE_SERVICE_URL
 
-SCHEDULE_SERVICE_URL =  os.getenv("SCHEDULE_SERVICE_URL", "http://localhost:3202/schedules")
-MOVIES_SERVICE_URL = os.getenv("MOVIES_SERVICE_URL", "http://localhost:3200/graphql")
-USERS_SERVICE_URL = os.getenv("USERS_SERVICE_URL", "http://localhost:3203/users")
-
-BOOKING_FILE = "{}/data/bookings.json"
+repo = get_repository()
 
 # -- UTILS --
-def load_bookings():
-    with open(BOOKING_FILE.format("."), "r") as file:
-        return json.load(file)["bookings"]
-
-def save_bookings(bookings):
-    with open(BOOKING_FILE.format("."), "w") as file:
-        json.dump({"bookings": bookings}, file)
-
 def is_admin(userid):
     try:
         user_resp = requests.get(f"{USERS_SERVICE_URL}/{userid}")
@@ -40,7 +28,7 @@ def bookings_for_user(_, info, _userid):
     if current_userid != _userid and not is_admin(current_userid):
         raise Exception("Not authorized")
 
-    bookings = load_bookings()
+    bookings = repo.load()
 
     for booking in bookings:
         if booking["userid"] == _userid:
@@ -72,7 +60,7 @@ def users_for_movie(_, info, _movieid):
     if not movie_data:
         return {"movie": None, "users": [], "error": "Movie ID not found"}
 
-    bookings = load_bookings()
+    bookings = repo.load()
     users = []
     for user_booking in bookings:
         for booking_date in user_booking["dates"]:
@@ -96,7 +84,7 @@ def add_booking(_, info, _userid, _date, _movieid):
     if _movieid not in schedule_data.get("movies"):
         return {"booking": None, "error": "Movie ID not found in schedule"}
 
-    bookings = load_bookings()
+    bookings = repo.load()
 
     # Check user booking existence
     for user_booking in bookings:
@@ -112,7 +100,7 @@ def add_booking(_, info, _userid, _date, _movieid):
 
                     # Add movie to existing date
                     booking_date["movies"].append(_movieid)
-                    save_bookings(bookings)
+                    repo.save(bookings)
                     return {"booking": user_booking, "error": None}
 
             # Date not found, add new date entry with movie
@@ -120,16 +108,16 @@ def add_booking(_, info, _userid, _date, _movieid):
                 "date": _date,
                 "movies": [_movieid]
             })
-            save_bookings(bookings)
+            repo.save(bookings)
             return {"booking": user_booking, "error": None}
 
     # User not found, create new user booking
     bookings.append({"userid": _userid, "dates": [{"date": _date, "movies": [_movieid]}]})
-    save_bookings(bookings)
+    repo.save(bookings)
     return {"booking": bookings[-1], "error": None}
 
 def delete_booking(_, info, _userid, _date, _movieid):
-    bookings = load_bookings()
+    bookings = repo.load()
     for user_booking in bookings:
         if user_booking["userid"] == _userid:
             for booking_date in user_booking["dates"]:
@@ -137,7 +125,7 @@ def delete_booking(_, info, _userid, _date, _movieid):
                     booking_date["movies"].remove(_movieid)
                     if not booking_date["movies"]:
                         user_booking["dates"].remove(booking_date)
-                    save_bookings(bookings)
+                    repo.save(bookings)
                     return {"booking": user_booking, "error": None}
     return {"booking": None, "error": "Booking not found"}
 
