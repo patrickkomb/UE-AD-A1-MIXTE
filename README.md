@@ -50,6 +50,44 @@ Ce projet contient 4 microservices :
 └── .env.local
 ```
 
+## Architecture du projet
+
+L'application est découpée en 4 microservices indépendants (Movie : GraphQL, Booking : GraphQL, User : REST, Schedule : gRPC) qui communiquent entre eux via des requêtes HTTP.
+
+Le code contient plusieurs fichiers spécifiques et nécessaires au bon fonctionnement du projet peu importe l'environnement et le type du microservice :
+
+### ``env.py``
+Pour chaque microservice et pour le module `common`, ce fichier charge automatiquement la configuration adaptée à l'environnement (Docker ou local).
+
+- Il détecte si l'application tourne en local (présence du fichier `.env.local`) ou sur Docker.
+- Il définit les URLs pour contacter les autres microservices.
+- Il détecte si l'application utilise MongoDB ou les fichiers JSON selon la variable d'environnement ``USE_MONGO``.
+
+### ``repository.py``
+
+Pour chaque microservice, ce fichier sert d'interface unique pour l'accès aux données et permet de gérer les 2 modes de stockage des données sans modifier le reste du code.
+
+### ``resolvers.py`` (GraphQL)
+
+Ce fichier contient les fonctions qui répondent précisément aux demandes envoyées à l'API GraphQL. Il fait le lien entre le schéma (la structure des données) et le repository (le stockage).
+
+### Le schéma (GraphQL) (ex : ``booking.graphql``)
+
+C'est le "contrat" de l'API. Il définit strictement ce que l'on peut demander ou modifier. Il contient les types définissant la structure des objets, les queries (lectures possibles) et les mutations (actions possibles).
+
+### ``common/permissions.py``
+
+La gestion des accès est centralisée dans ce fichier qui définit des décorateurs à utiliser sur les routes pour protéger l'accès à certains endpoints.
+
+- Il vérifie l'identité via le header ``X-User-Id``.
+- Il contacte le microservice User pour vérifier si l'utilisateur est admin (``@admin_required``) ou propriétaire de la donnée (``@owner_or_admin_required``).
+
+### Les routes API (ex : ``nom_microservice.py``)
+
+C'est le fichier principal de chaque service (ex: ``user.py``).
+- Il lance le serveur Flask.
+- Il définit les points d'entrée des APIs.
+
 ## Prérequis
 - Python >= 3.10
 - Docker et Docker Compose
