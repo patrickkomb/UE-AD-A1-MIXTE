@@ -147,3 +147,16 @@ En se plaçant à la racine du projet :
 ```
 docker compose up -d --build mongo
 ```
+
+## Arrêter le projet
+
+**⚠️ Il n'y a pas de persistance de données avec MongoDB, si le conteneur vient à être supprimé, les données seront donc perdues et remplacées par celles présentes dans les fichiers JSON à la recréation des conteneurs.**
+
+### Stopper les conteneurs Docker
+```
+docker compose stop
+```
+
+### Stopper les microservices lancés en local
+
+Dans les terminaux, faire ``Crtl + C``.

@@ -29,7 +29,6 @@ class MongoUserRepository:
             json_repo = JsonUserRepository()
             self.collection.insert_many(json_repo.load())
 
-
     def load(self):
         return list(self.collection.find({}, {"_id": 0}))
 

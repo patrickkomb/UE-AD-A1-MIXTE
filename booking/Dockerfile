@@ -2,5 +2,6 @@ FROM python:3.10-slim
 WORKDIR /app
 COPY requirements.txt /app
 RUN pip install -r requirements.txt
-ADD booking/ .
+COPY common/ /app/common/
+COPY booking/ /app/
 CMD ["python","-u","booking.py"]

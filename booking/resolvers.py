@@ -7,7 +7,7 @@ repo = get_repository()
 # -- UTILS --
 def is_admin(userid):
     try:
-        user_resp = requests.get(f"{USERS_SERVICE_URL}/{userid}")
+        user_resp = requests.get(f"{USERS_SERVICE_URL}/{userid}", headers={"X-User-Id": 'admin'})
         if user_resp.status_code == 200:
             user_detail = user_resp.json()
             if user_detail["is_admin"]:
