@@ -1,9 +1,10 @@
 import json
 import requests
+import os
 
-SCHEDULE_SERVICE_URL = "http://localhost:3202/schedules"
-MOVIES_SERVICE_URL = "http://localhost:3200/graphql"
-USERS_SERVICE_URL = "http://localhost:3203/users"
+SCHEDULE_SERVICE_URL =  os.getenv("SCHEDULE_SERVICE_URL", "http://localhost:3202/schedules")
+MOVIES_SERVICE_URL = os.getenv("MOVIES_SERVICE_URL", "http://localhost:3200/graphql")
+USERS_SERVICE_URL = os.getenv("USERS_SERVICE_URL", "http://localhost:3203/users")
 
 BOOKING_FILE = "{}/data/bookings.json"
 
