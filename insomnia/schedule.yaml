@@ -1,0 +1,263 @@
+type: collection.insomnia.rest/5.0
+name: Schedule gRPC - MIXTE
+meta:
+  id: wrk_68a1e25d09294526be7ec6066f5f986f
+  created: 1763713914732
+  modified: 1763713914732
+  description: ""
+collection:
+  - url: "{{SCHEDULE_LOCAL_gRPC}}"
+    name: Schedule GetByDate OK
+    meta:
+      id: greq_f64f2de0cb904401845d8b2c8d814889
+      created: 1763678120695
+      modified: 1763714089857
+      isPrivate: false
+      sortKey: -1763676928438
+      description: ""
+    body:
+      text: |-
+        {
+        	"date": "19690721"
+        }
+    metadata:
+      - name: ""
+        value: ""
+        description: ""
+        disabled: false
+    protoFileId: pf_6dcefc7724914af99aa944b6be4ca14d
+    protoMethodName: /Schedule/GetScheduleByDate
+    reflectionApi:
+      enabled: false
+      url: https://buf.build
+      apiKey: ""
+      module: buf.build/connectrpc/eliza
+  - url: "{{SCHEDULE_LOCAL_gRPC}}"
+    name: Schedule GetMoviesDetailsByDate OK
+    meta:
+      id: greq_6242a1e213d640fd9b3301cb61708b22
+      created: 1763683767627
+      modified: 1763714107074
+      isPrivate: false
+      sortKey: -1763676928388
+      description: ""
+    body:
+      text: |-
+        {
+        	"date": "19690721"
+        }
+    metadata:
+      - name: ""
+        value: ""
+        description: ""
+        disabled: false
+    protoFileId: pf_6dcefc7724914af99aa944b6be4ca14d
+    protoMethodName: /Schedule/GetScheduleDetailsByDate
+    reflectionApi:
+      enabled: false
+      url: https://buf.build
+      apiKey: ""
+      module: buf.build/connectrpc/eliza
+  - url: "{{SCHEDULE_LOCAL_gRPC}}"
+    name: Schedule AddSchedule OK
+    meta:
+      id: greq_1da3fd4146d343498ae92b7fa5dd8c16
+      created: 1763685401131
+      modified: 1763714071659
+      isPrivate: false
+      sortKey: -1763676928538
+      description: ""
+    body:
+      text: |2-
+            {
+              "date": "19690721",
+              "movies": [
+                "96798c08-d19b-4986-a05d-7da856efb697", 
+        				"a8034f44-aee4-44cf-b32c-74cf452aaaae"
+              ]
+            }
+    metadata:
+      - name: ""
+        value: ""
+        description: ""
+        disabled: false
+    protoFileId: pf_6dcefc7724914af99aa944b6be4ca14d
+    protoMethodName: /Schedule/AddSchedule
+    reflectionApi:
+      enabled: false
+      url: https://buf.build
+      apiKey: ""
+      module: buf.build/connectrpc/eliza
+  - url: "{{SCHEDULE_LOCAL_gRPC}}"
+    name: Schedule GetByDate KO
+    meta:
+      id: greq_a40ee21ce4644293b665be723f1c0151
+      created: 1763685659039
+      modified: 1763714029681
+      isPrivate: false
+      sortKey: -1763676928638
+      description: ""
+    body:
+      text: |-
+        {
+        	"date": "19690721"
+        }
+    metadata:
+      - name: ""
+        value: ""
+        description: ""
+        disabled: false
+    protoFileId: pf_6dcefc7724914af99aa944b6be4ca14d
+    protoMethodName: /Schedule/GetScheduleByDate
+    reflectionApi:
+      enabled: false
+      url: https://buf.build
+      apiKey: ""
+      module: buf.build/connectrpc/eliza
+  - url: "{{SCHEDULE_LOCAL_gRPC}}"
+    name: Schedule GetScheduleDetailsByDate KO
+    meta:
+      id: greq_a2951172ec43481b9a9d311ca24c6dc9
+      created: 1763685770135
+      modified: 1763714056753
+      isPrivate: false
+      sortKey: -1763676928588
+      description: ""
+    body:
+      text: |-
+        {
+        	"date": "19690721"
+        }
+    metadata:
+      - name: ""
+        value: ""
+        description: ""
+        disabled: false
+    protoFileId: pf_6dcefc7724914af99aa944b6be4ca14d
+    protoMethodName: /Schedule/GetScheduleDetailsByDate
+    reflectionApi:
+      enabled: false
+      url: https://buf.build
+      apiKey: ""
+      module: buf.build/connectrpc/eliza
+  - url: "{{SCHEDULE_LOCAL_gRPC}}"
+    name: Schedule AddSchedule KO
+    meta:
+      id: greq_5f38011975b144a68892eb39b08f0472
+      created: 1763685796595
+      modified: 1763714079597
+      isPrivate: false
+      sortKey: -1763676928488
+      description: ""
+    body:
+      text: |2-
+            {
+              "date": "19690721",
+              "movies": [
+                "96798c08-d19b-4986-a05d-7da856efb697", 
+        				"a8034f44-aee4-44cf-b32c-74cf452aaaae"
+              ]
+            }
+    metadata:
+      - name: ""
+        value: ""
+        description: ""
+        disabled: false
+    protoFileId: pf_6dcefc7724914af99aa944b6be4ca14d
+    protoMethodName: /Schedule/AddSchedule
+    reflectionApi:
+      enabled: false
+      url: https://buf.build
+      apiKey: ""
+      module: buf.build/connectrpc/eliza
+  - url: "{{SCHEDULE_LOCAL_gRPC}}"
+    name: Schedule DeleteSchedule OK
+    meta:
+      id: greq_1bcead6d1cbd4ac4917fdbd46b355552
+      created: 1763686968703
+      modified: 1763714115361
+      isPrivate: false
+      sortKey: -1763676928338
+      description: ""
+    body:
+      text: |-
+        {
+        	"date": "19690721"
+        }
+    metadata:
+      - name: ""
+        value: ""
+        description: ""
+        disabled: false
+    protoFileId: pf_6dcefc7724914af99aa944b6be4ca14d
+    protoMethodName: /Schedule/DeleteSchedule
+    reflectionApi:
+      enabled: false
+      url: https://buf.build
+      apiKey: ""
+      module: buf.build/connectrpc/eliza
+  - url: "{{SCHEDULE_LOCAL_gRPC}}"
+    name: Schedule DeleteSchedule KO
+    meta:
+      id: greq_1bd3c1c97f5947e8bef4123087472914
+      created: 1763687004512
+      modified: 1763714140934
+      isPrivate: false
+      sortKey: -1763676928288
+      description: ""
+    body:
+      text: |-
+        {
+        	"date": "19690721"
+        }
+    metadata:
+      - name: ""
+        value: ""
+        description: ""
+        disabled: false
+    protoFileId: pf_6dcefc7724914af99aa944b6be4ca14d
+    protoMethodName: /Schedule/DeleteSchedule
+    reflectionApi:
+      enabled: false
+      url: https://buf.build
+      apiKey: ""
+      module: buf.build/connectrpc/eliza
+  - url: "{{SCHEDULE_LOCAL_gRPC}}"
+    name: Schedule GetByDate KO
+    meta:
+      id: greq_f9d763d112de405eadd6e32884232b02
+      created: 1763687022479
+      modified: 1763714121509
+      isPrivate: false
+      sortKey: -1763676928313
+      description: ""
+    body:
+      text: |-
+        {
+        	"date": "19690721"
+        }
+    metadata:
+      - name: ""
+        value: ""
+        description: ""
+        disabled: false
+    protoFileId: pf_6dcefc7724914af99aa944b6be4ca14d
+    protoMethodName: /Schedule/GetScheduleByDate
+    reflectionApi:
+      enabled: false
+      url: https://buf.build
+      apiKey: ""
+      module: buf.build/connectrpc/eliza
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_7a749061237b4f878caaf6e517940b4b
+    created: 1758894658567
+    modified: 1758894658567
+environments:
+  name: Base Environment
+  meta:
+    id: env_8a0cb4b07944406e87bc2f203d42c7ab
+    created: 1758894658566
+    modified: 1758894658566
+    isPrivate: false

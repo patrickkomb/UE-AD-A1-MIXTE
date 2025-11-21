@@ -1,0 +1,339 @@
+type: collection.insomnia.rest/5.0
+name: Bookings
+meta:
+  id: wrk_d3519fafb63f4bb59a144f5a2ee454e9
+  created: 1763572336521
+  modified: 1763572336521
+  description: ""
+collection:
+  - name: Queries
+    meta:
+      id: fld_ff2aec3c89ea4d20af9c481c9909b6b1
+      created: 1763568090040
+      modified: 1763572277126
+      sortKey: -1763568090040
+      description: ""
+    children:
+      - name: booking_for_user
+        meta:
+          id: fld_9cdf32cc4e594005be7d6b0639da87fe
+          created: 1763568140694
+          modified: 1763582563689
+          sortKey: -1763568337461
+          description: ""
+        children:
+          - url: "{{ _.BOOKING_LOCAL_GRAPHQL }}"
+            name: booking_for_user CR by CR OK
+            meta:
+              id: req_b8e73665d62e4b33bd3b226464c0560f
+              created: 1759325246737
+              modified: 1763727831707
+              isPrivate: false
+              description: ""
+              sortKey: -1763568146353
+            method: POST
+            body:
+              mimeType: application/graphql
+              text: '{"query":"query{\n  bookings_for_user(_userid:\"test_test\")
+                {\n    userid\n\t\tdates
+                {\n\t\t\tdate\n\t\t\tmovies\n\t\t}\n  }\n}"}'
+            headers:
+              - name: Content-Type
+                value: application/json
+                id: pair_c8d1c34a0e954fe583e10e41f77ae9ab
+              - name: User-Agent
+                value: insomnia/11.6.1
+                id: pair_55bd20d9cd6f479bb222110c801c2386
+              - id: pair_ea8c4c16575d49fbab7c1f3053a653b0
+                name: X-User-Id
+                value: test_test
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.BOOKING_LOCAL_GRAPHQL }}"
+            name: booking_for_user CR by admin OK
+            meta:
+              id: req_55a0e3ce020d4ad8bfa601372938d7d6
+              created: 1763583160904
+              modified: 1763727839460
+              isPrivate: false
+              description: ""
+              sortKey: -1763568146303
+            method: POST
+            body:
+              mimeType: application/graphql
+              text: '{"query":"query{\n  bookings_for_user(_userid:\"test_test\")
+                {\n    userid\n\t\tdates
+                {\n\t\t\tdate\n\t\t\tmovies\n\t\t}\n  }\n}"}'
+            headers:
+              - name: Content-Type
+                value: application/json
+                id: pair_c8d1c34a0e954fe583e10e41f77ae9ab
+              - name: User-Agent
+                value: insomnia/11.6.1
+                id: pair_55bd20d9cd6f479bb222110c801c2386
+              - id: pair_65a59f3a69fc44f88188452699b93499
+                name: X-User-Id
+                value: admin
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.BOOKING_LOCAL_GRAPHQL }}"
+            name: booking_for_user CR by non-admin KO
+            meta:
+              id: req_51f252b5f0c3455b86432820c53adab8
+              created: 1763583172496
+              modified: 1763657292416
+              isPrivate: false
+              description: ""
+              sortKey: -1763568146278
+            method: POST
+            body:
+              mimeType: application/graphql
+              text: '{"query":"query{\n  bookings_for_user(_userid:\"chris_rivers\")
+                {\n    userid\n\t\tdates
+                {\n\t\t\tdate\n\t\t\tmovies\n\t\t}\n  }\n}"}'
+            headers:
+              - name: Content-Type
+                value: application/json
+                id: pair_c8d1c34a0e954fe583e10e41f77ae9ab
+              - name: User-Agent
+                value: insomnia/11.6.1
+                id: pair_55bd20d9cd6f479bb222110c801c2386
+              - id: pair_65a59f3a69fc44f88188452699b93499
+                name: X-User-Id
+                value: garret_heaton
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: users_for_movie
+        meta:
+          id: fld_4660307b4226495d933ee3d1e2be8cc9
+          created: 1763568337361
+          modified: 1763583223069
+          sortKey: -1763568337436
+          description: ""
+        children:
+          - url: "{{ _.BOOKING_LOCAL_GRAPHQL }}"
+            name: users_for_movie by admin OK
+            meta:
+              id: req_32eca05e140e4f63ace04cf1ef13e0c6
+              created: 1763568355068
+              modified: 1763729013989
+              isPrivate: false
+              description: ""
+              sortKey: -1763568358924
+            method: POST
+            body:
+              mimeType: application/graphql
+              text: '{"query":"query{\n  users_for_movie(_movieid:
+                \"96798c08-d19b-4986-a05d-7da856efb697\") {\n\t\tmovie
+                {\n\t\t\tid\n\t\t\ttitle\n\t\t\tdirector\n\t\t\trating\n\t\t}\n\t\tusers
+                {\n\t\t\tuserid\n\t\t\tdate\n\t\t}\n\t}\n}"}'
+            headers:
+              - name: Content-Type
+                value: application/json
+                id: pair_1383ae6c577546dca7335b1bba4ce4a9
+              - name: User-Agent
+                value: insomnia/11.6.1
+                id: pair_32f7239dc23e4b198400ef1ad278549c
+              - id: pair_21fb40c18c01438b8a10031d8ee503d9
+                name: X-User-Id
+                value: test_test
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.BOOKING_LOCAL_GRAPHQL }}"
+            name: users_for_movie by non-admin KO
+            meta:
+              id: req_ff4b168d8500449c8433e861c9e36394
+              created: 1763583470331
+              modified: 1763727928932
+              isPrivate: false
+              description: ""
+              sortKey: -1763568267601.5
+            method: POST
+            body:
+              mimeType: application/graphql
+              text: '{"query":"query{\n  users_for_movie(_movieid:
+                \"96798c08-d19b-4986-a05d-7da856efb697\") {\n\t\tmovie
+                {\n\t\t\tid\n\t\t\ttitle\n\t\t\tdirector\n\t\t\trating\n\t\t}\n\t\tusers
+                {\n\t\t\tuserid\n\t\t\tdate\n\t\t}\n\t}\n}"}'
+            headers:
+              - name: Content-Type
+                value: application/json
+                id: pair_1383ae6c577546dca7335b1bba4ce4a9
+              - name: User-Agent
+                value: insomnia/11.6.1
+                id: pair_32f7239dc23e4b198400ef1ad278549c
+              - id: pair_21fb40c18c01438b8a10031d8ee503d9
+                name: X-User-Id
+                value: test_test
+                description: ""
+                disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+  - name: Mutations
+    meta:
+      id: fld_01cdac587dc74fac994d021d3858a42f
+      created: 1763568094817
+      modified: 1763572145794
+      sortKey: -1763568094817
+      description: ""
+    children:
+      - name: add_booking
+        meta:
+          id: fld_513de0f0cf23449da9cbd5a0b28843de
+          created: 1763583737751
+          modified: 1763585296549
+          sortKey: -1763585284158
+          description: ""
+        children:
+          - url: "{{ _.BOOKING_LOCAL_GRAPHQL }}"
+            name: add_booking CR Already Booked
+            meta:
+              id: req_f4a3fec8c6a34520a7995203670c848c
+              created: 1763568515057
+              modified: 1763727747834
+              isPrivate: false
+              description: ""
+              sortKey: -1763583745486
+            method: POST
+            body:
+              mimeType: application/graphql
+              text: '{"query":"mutation {\n   add_booking(\n\t\t_userid:
+                \"chris_rivers\",\n\t\t_date: \"20151130\",\n\t\t_movieid:
+                \"39ab85e5-5e8e-4dc5-afea-65dc368bd7ab\"\n\t) {\n\t\tbooking
+                {\n\t\t\tuserid\n\t\t\tdates
+                {\n\t\t\t\tdate\n\t\t\t\tmovies\n\t\t\t}\n\t\t}\n\t\terror\n\t}\n}"}'
+            headers:
+              - name: User-Agent
+                value: insomnia/11.6.1
+              - name: Content-Type
+                value: application/json
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.BOOKING_LOCAL_GRAPHQL }}"
+            name: add_booking CR ok
+            meta:
+              id: req_e47efe25a9cf4e6e8a560d54a23b5abd
+              created: 1763584094898
+              modified: 1763728944250
+              isPrivate: false
+              description: ""
+              sortKey: -1763576052205
+            method: POST
+            body:
+              mimeType: application/graphql
+              text: '{"query":"mutation {\n   add_booking(\n\t\t_userid:
+                \"test_test\",\n\t\t_date: \"19690721\",\n\t\t_movieid:
+                \"96798c08-d19b-4986-a05d-7da856efb697\"\n\t) {\n\t\tbooking
+                {\n\t\t\tuserid\n\t\t\tdates
+                {\n\t\t\t\tdate\n\t\t\t\tmovies\n\t\t\t}\n\t\t}\n\t\terror\n\t}\n}"}'
+            headers:
+              - name: User-Agent
+                value: insomnia/11.6.1
+              - name: Content-Type
+                value: application/json
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: delete_booking
+        meta:
+          id: fld_a078e5f9292d4cb396ba27f1c1009d97
+          created: 1763585284058
+          modified: 1763669006255
+          sortKey: -1763585284058
+          description: ""
+        children:
+          - url: "{{ _.BOOKING_LOCAL_GRAPHQL }}"
+            name: delete_booking
+            meta:
+              id: req_c649b9d298d5481d93c3206b9ce1ff08
+              created: 1763669013549
+              modified: 1763669013549
+              isPrivate: false
+              description: ""
+              sortKey: -1763584519427
+            method: POST
+            body:
+              mimeType: application/graphql
+              text: '{"query":"mutation {\n   delete_booking(\n\t\t_userid:
+                \"chris_rivers\",\n\t\t_date: \"20151130\",\n\t\t_movieid:
+                \"39ab85e5-5e8e-4dc5-afea-65dc368bd7ab\"\n\t) {\n\t\tbooking
+                {\n\t\t\tuserid\n\t\t\tdates
+                {\n\t\t\t\tdate\n\t\t\t\tmovies\n\t\t\t}\n\t\t}\n\t\terror\n\t}\n}"}'
+            headers:
+              - name: User-Agent
+                value: insomnia/11.6.1
+              - name: Content-Type
+                value: application/json
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_9e6d891d65b4444a96b9b14e3e3be68d
+    created: 1759325246735
+    modified: 1759325246735
+environments:
+  name: Base Environment
+  meta:
+    id: env_8b593d260fbe4aae9e38e52652b89bfd
+    created: 1759325246735
+    modified: 1763572040625
+    isPrivate: false
+  data:
+    MOVIE_LOCAL:
+      movieLocal: http://localhost:3000/graphql

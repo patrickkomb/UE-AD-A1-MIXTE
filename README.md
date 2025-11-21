@@ -200,3 +200,7 @@ docker compose stop
 ### Stopper les microservices lancés en local
 
 Dans les terminaux, faire ``Crtl + C``.
+
+## Tester le projet
+
+Vous trouverez dans le dossier ``insomnia/`` des fichiers de collections Insomnia au format YAML, importables dans le logiciel afin de tester les différentes routes.
