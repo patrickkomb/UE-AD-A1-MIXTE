@@ -1,8 +1,13 @@
 import requests
 from repository import get_repository
-from env import USERS_SERVICE_URL, MOVIES_SERVICE_URL, SCHEDULE_SERVICE_URL
+from env import USERS_SERVICE_URL, MOVIES_SERVICE_URL
+import schedule_pb2
+import grpc
+from grpc_client import get_schedule_client
+
 
 repo = get_repository()
+schedule_client = get_schedule_client()
 
 # -- UTILS --
 def is_admin(userid):
@@ -78,10 +83,17 @@ def users_for_movie(_, info, _movieid):
 
 # -- MUTATIONS --
 def add_booking(_, info, _userid, _date, _movieid):
-    schedule_response = requests.get(f"{SCHEDULE_SERVICE_URL}/{_date}")
-    schedule_response.raise_for_status()
-    schedule_data = schedule_response.json()
-    if _movieid not in schedule_data.get("movies"):
+    try:
+        schedule_response = schedule_client.GetScheduleByDate(
+            schedule_pb2.Date(date=_date)
+        )
+        movies = list(schedule_response.movies)
+    except grpc.RpcError as e:
+        if e.code() == grpc.StatusCode.NOT_FOUND:
+            return {"booking": None, "error": "No schedule for this date"}
+        return {"booking": None, "error": "Schedule service unavailable"}
+
+    if _movieid not in movies:
         return {"booking": None, "error": "Movie ID not found in schedule"}
 
     bookings = repo.load()

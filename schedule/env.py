@@ -9,6 +9,5 @@ if env_local.exists():
 
 SCHEDULE_SERVICE_URL = os.getenv("SCHEDULE_SERVICE_URL", "localhost:3202")
 MOVIES_SERVICE_URL = os.getenv("MOVIES_SERVICE_URL", "http://localhost:3200/graphql")
-USERS_SERVICE_URL = os.getenv("USERS_SERVICE_URL", "http://localhost:3203/users")
 USE_MONGO = os.getenv("USE_MONGO", "false").lower() == "true"
 MONGO_URL = os.getenv("MONGO_URL", "mongodb://root:example@localhost:27017/cinema?authSource=admin")

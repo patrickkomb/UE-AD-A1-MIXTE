@@ -7,7 +7,7 @@ env_local = Path(__file__).resolve().parents[1] / ".env.local"
 if env_local.exists():
     load_dotenv(env_local)
 
-SCHEDULE_SERVICE_URL = os.getenv("SCHEDULE_SERVICE_URL", "http://localhost:3202/schedules")
+SCHEDULE_SERVICE_URL = os.getenv("SCHEDULE_SERVICE_URL", "localhost:3202")
 BOOKING_SERVICE_URL = os.getenv("BOOKING_SERVICE_URL", "http://localhost:3201/graphql")
 USERS_SERVICE_URL = os.getenv("USERS_SERVICE_URL", "http://localhost:3203/users")
 USE_MONGO = os.getenv("USE_MONGO", "false").lower() == "true"

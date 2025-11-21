@@ -13,7 +13,13 @@ services:
     ports:
       - "3201:3201"
     env_file: ".env"
-  # TODO : faire docker schedule
+  schedule:
+    build:
+      context: .
+      dockerfile: ./schedule/Dockerfile
+    ports:
+      - "3202:3202"
+    env_file: ".env"
   user:
     build:
       context: .
