@@ -103,10 +103,10 @@ Contient les variables utilisées par tous les microservices dans le cas d'une e
 Par exemple :
 ```
 USERS_SERVICE_URL=http://user:3203/users
-SCHEDULE_SERVICE_URL=http://schedule:3202/schedules
+SCHEDULE_SERVICE_URL=schedule:3202
 MOVIES_SERVICE_URL=http://movie:3200/graphql
 BOOKING_SERVICE_URL=http://booking:3201/graphql
-MONGO_URL=mongodb://user:pwd@mongo:27017/cinema?authSource=admin
+MONGO_URL=mongodb://root:example@mongo:27017/cinema?authSource=admin
 USE_MONGO=true
 ```
 
@@ -117,10 +117,10 @@ Contient les variables utilisées par tous les microservices dans le cas d'une e
 Par exemple :
 ```
 USERS_SERVICE_URL=http://localhost:3203/users
-SCHEDULE_SERVICE_URL=http://localhost:3202/schedules
+SCHEDULE_SERVICE_URL=schedule:3202
 MOVIES_SERVICE_URL=http://localhost:3200/graphql
 BOOKING_SERVICE_URL=http://localhost:3201/graphql
-MONGO_URL=mongodb://user:pwd@localhost:27017/cinema?authSource=admin
+MONGO_URL=mongodb://root:example@localhost:27017/cinema?authSource=admin
 USE_MONGO=true
 ```
 
