@@ -204,3 +204,11 @@ Dans les terminaux, faire ``Crtl + C``.
 ## Tester le projet
 
 Vous trouverez dans le dossier ``insomnia/`` des fichiers de collections Insomnia au format YAML, importables dans le logiciel afin de tester les différentes routes.
+
+Le fichier ``environment.yaml`` contient des variables d'environnement renseignant les URL des microservices.
+
+Il faut importer ce fichier dans Insomnia au même titre que les autres fichiers YAML.
+
+Ensuite, pour chaque collection qu'on souhaite tester, il faut bien penser à sélectionner dans ``Base environment``, le ``Global environment`` appelé "LOCAL" précédemment importé pour que les variables d'environnement soient prises en compte et que les requêtes puissent fonctionner.
+
+<img src="assets/environment.png">
