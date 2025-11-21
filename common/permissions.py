@@ -1,6 +1,5 @@
 from functools import wraps
 from flask import request, jsonify, make_response
-from flask import request, jsonify, make_response
 import requests
 from common.env import USERS_SERVICE_URL
 
