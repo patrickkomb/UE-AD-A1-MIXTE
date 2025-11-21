@@ -52,7 +52,7 @@ Ce projet contient 4 microservices :
 
 ## Architecture du projet
 
-L'application est découpée en 4 microservices indépendants (Movie : GraphQL, Booking : GraphQL, User : REST, Schedule : gRPC) qui communiquent entre eux via des requêtes HTTP.
+L'application est découpée en 4 microservices indépendants (Movie : GraphQL, Booking : GraphQL, User : REST, Schedule : gRPC) qui communiquent entre eux via des requêtes.
 
 Le code contient plusieurs fichiers spécifiques et nécessaires au bon fonctionnement du projet peu importe l'environnement et le type du microservice :
 
