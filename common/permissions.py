@@ -1,5 +1,6 @@
 from functools import wraps
 from flask import request, jsonify, make_response
+from flask import request, jsonify, make_response
 import requests
 from common.env import USERS_SERVICE_URL
 
@@ -16,14 +17,28 @@ def is_admin(userid):
     except Exception as e:
         return False # TODO: Gestion erreur pour renvoyer XYZ service unavailable
 
+def is_graphql_request():
+    if request.is_json:
+        data = request.get_json(silent=True)
+        if data and "query" in data:
+            return True
+    return False
+
 def check_access(source_userid, target_userid=None, require_admin=False):
+    graphql = is_graphql_request()
     if not source_userid:
+        if graphql:
+            raise Exception("Missing X-User-Id header")
         return make_response(jsonify({"error": "Missing X-User-Id header"}), 401)
 
     if require_admin and not is_admin(source_userid):
+        if graphql:
+            raise Exception("Access forbidden")
         return make_response(jsonify({"error": "Access forbidden"}), 403)
 
     if target_userid is not None and source_userid != target_userid and not is_admin(source_userid):
+        if graphql:
+            raise Exception("Access forbidden")
         return make_response(jsonify({"error": "Access forbidden"}), 403)
 
     return None

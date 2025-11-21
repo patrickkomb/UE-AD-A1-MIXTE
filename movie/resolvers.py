@@ -1,3 +1,7 @@
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from common.permissions import admin_required
 from repository import get_movie_repository, get_actor_repository
 
 movie_repo = get_movie_repository()
@@ -39,6 +43,7 @@ def all_actors(_, info):
 # -- MUTATIONS -- #
 
 # Movie
+@admin_required
 def update_movie_rate(_, info, _id, _rate):
     movies = movie_repo.load()
     for movie in movies:
@@ -48,6 +53,7 @@ def update_movie_rate(_, info, _id, _rate):
             return movie
     return None
 
+@admin_required
 def add_movie(_, info, _id, _title, _director, _rating):
     movies = movie_repo.load()
 
@@ -66,6 +72,7 @@ def add_movie(_, info, _id, _title, _director, _rating):
     movie_repo.save(movies)
     return new_movie
 
+@admin_required
 def delete_movie(_, info, _id):
     movies = movie_repo.load()
 
@@ -77,6 +84,7 @@ def delete_movie(_, info, _id):
     return None
 
 # Actor
+@admin_required
 def add_actor(_, info, _id, _firstname, _lastname, _birthyear):
     actors = actor_repo.load()
 
@@ -96,6 +104,7 @@ def add_actor(_, info, _id, _firstname, _lastname, _birthyear):
     actor_repo.save(actors)
     return new_actor
 
+@admin_required
 def add_movie_to_actor(_, info, _movie_id, _actor_id):
     actors = actor_repo.load()
     movie = movie_with_id(_, info, _movie_id)
@@ -111,6 +120,7 @@ def add_movie_to_actor(_, info, _movie_id, _actor_id):
             return actor
     return None
 
+@admin_required
 def delete_actor(_, info, _id):
     actors = actor_repo.load()
 
