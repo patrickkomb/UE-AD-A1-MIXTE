@@ -19,7 +19,6 @@ def home():
 @owner_or_admin_required
 def get_user_byid(userid):
     users = repo.load()
-    print(users)
     for user in users:
         if str(user["id"]) == str(userid):
             print(user)
