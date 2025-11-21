@@ -167,6 +167,13 @@ Les 4 microservices seront lancés ainsi que MongoDB et Mongo Express.
 
 Pour choisir la source de données (MongoDB ou fichier JSON), il suffit de modifier la variable d'environnement ``USE_MONGO`` dans le fichier ``.env.local``, en la passant à ``true`` ou ``false`` (mise à ``true`` par défaut).
 
+**⚠️ Si vous avez choisi de lancer le projet avec les données MongoDB (``USE_MONGO=true``), il faut lancer le conteneur MongoDB avant de lancer les services :** 
+
+En se plaçant à la racine du projet :
+```
+docker compose up -d --build mongo
+```
+
 Toutes les dépendances à installer sont situées dans le fichier ``requirements.txt`` présent à la racine du projet.
 
 Il faut ensuite lancer les microservices un à un, dans des terminaux séparés :
@@ -177,13 +184,6 @@ Pour ``booking/`` par exemple, depuis la racine du projet :
 pip install -r requirements.txt
 cd booking
 python booking.py
-```
-
-**⚠️ Si vous avez choisi de lancer le projet avec les données MongoDB (``USE_MONGO=true``), il faut lancer le conteneur MongoDB avant de lancer les services :** 
-
-En se plaçant à la racine du projet :
-```
-docker compose up -d --build mongo
 ```
 
 ## Arrêter le projet
